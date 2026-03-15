@@ -230,7 +230,7 @@ function MyVideoPanel:new(x, y, width, height)
 
 end
 
-
+--Force Trigger on Game Start
 Events.OnGameStart.Add(function()
 
     local panel = MyVideoPanel:new(200, 200, 640, 360)
