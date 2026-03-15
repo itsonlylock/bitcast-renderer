@@ -1,15 +1,9 @@
 -- File: media/lua/client/TVVHS/FX/BitmapVideoPlayer.lua
 -- Plays Lua-exported indexed+RLE bitmap videos inside the TV/VHS viewport.
 --
--- Supported export formats:
+-- Supported export format:
 --
--- (A) Readable / legacy:
---   data.meta = { w=?, h=?, fps=?, frame_count=?, palette_size=? }
---   data.palette = { {r,g,b,a?}, ... }  -- 0-255 ints, 1-indexed palette
---   data.frames[f][y] = {count,index,count,index,...}  -- RLE per scanline
---   Index 0 is treated as transparent.
---
--- (B) Bitcast compact format (scanline dictionary + frame refs):
+-- 1.) Bitcast compact format (scanline dictionary + frame refs):
 --   data.meta = { w=?, h=?, fps=?, frame_count=?, palette_size=? }
 --   data.palette = { {r,g,b}, ... } -- 0-255 ints, 1-indexed palette
 --   data.S = { "<base64 rle bytes>", ... } OR data.S = { {byte,byte,...}, ... } OR data.S = { {count,idx,count,idx,...}, ... }
