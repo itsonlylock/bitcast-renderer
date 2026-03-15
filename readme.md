@@ -168,65 +168,6 @@ player:render(self, x, y, w, h, nil, 1.0, "contain")
 
 You can view/drop in BitcastTestPanel.lua if you would like a quick way to test. It forces the game to render a ui panel. Ensure you have the formatted lua files.
 
-
-
-function MyVideoPanel:initialise()
-
-    ISPanel.initialise(self)
-
-    local BitcastRenderer = require("BitcastRenderer")
-
-    -- Automatically loads the correct Bitcast video file
-    local videoData = loadBitcastVideo("MyMod/Videos/myvideo")
-
-    self.player = BitcastRenderer.new(videoData)
-    self.player.loop = true
-
-end
-
-
-function MyVideoPanel:update()
-
-    if self.player then
-        self.player:update()
-    end
-
-end
-
-
-function MyVideoPanel:render()
-
-    if self.player then
-        self.player:render(self, 0, 0, self.width, self.height, nil, 1.0, "contain")
-    end
-
-end
-
-
-function MyVideoPanel:new(x, y, width, height)
-
-    local o = ISPanel:new(x, y, width, height)
-    setmetatable(o, self)
-    self.__index = self
-
-    return o
-
-end
-
---Force Trigger on Game Start
-Events.OnGameStart.Add(function()
-
-    local panel = MyVideoPanel:new(200, 200, 640, 360)
-
-    panel:initialise()
-    panel:instantiate()
-    panel:addToUIManager()
-
-end)
-```
-
----
-
 ## Rendering Method
 
 The renderer reconstructs frames through the following steps:
