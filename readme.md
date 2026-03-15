@@ -1,4 +1,4 @@
-# Bitcast Renderer
+![Bitcast Renderer](logo.gif)
 
 This guide explains how to use the Bitcast Renderer to render exported bitmap video inside your own Project Zomboid mod.
 
