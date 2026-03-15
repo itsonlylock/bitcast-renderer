@@ -1,6 +1,3 @@
--- File: media/lua/client/TVVHS/FX/BitmapVideoPlayer.lua
--- Plays Lua-exported indexed+RLE bitmap videos inside the TV/VHS viewport.
---
 -- Supported export format:
 --
 -- 1.) Bitcast compact format (scanline dictionary + frame refs):
