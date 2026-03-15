@@ -166,25 +166,8 @@ player:render(self, x, y, w, h, nil, 1.0, "contain")
 
 ## Example UI Panel
 
-```lua
-MyVideoPanel = ISPanel:derive("MyVideoPanel")
+You can view/drop in BitcastTestPanel.lua if you would like a quick way to test. It forces the game to render a ui panel. Ensure you have the formatted lua files.
 
-
--- Helper function that safely loads a Bitcast video
-local function loadBitcastVideo(path)
-
-    local ok, data = pcall(require, path .. "/seg_000")
-    if ok then
-        return data
-    end
-
-    ok, data = pcall(require, path)
-    if ok then
-        return data
-    end
-
-    error("Bitcast video could not be loaded: " .. tostring(path))
-end
 
 
 function MyVideoPanel:initialise()
