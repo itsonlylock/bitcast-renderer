@@ -9,17 +9,15 @@
 --   data.frames[f][y] = {count,index,count,index,...}  -- RLE per scanline
 --   Index 0 is treated as transparent.
 --
--- (B) PixelForge compact v2 (scanline dictionary + frame refs):
+-- (B) Bitcast compact format (scanline dictionary + frame refs):
 --   data.meta = { w=?, h=?, fps=?, frame_count=?, palette_size=? }
 --   data.palette = { {r,g,b}, ... } -- 0-255 ints, 1-indexed palette
 --   data.S = { "<base64 rle bytes>", ... } OR data.S = { {byte,byte,...}, ... } OR data.S = { {count,idx,count,idx,...}, ... }
---   data.F = { frame1, frame2, ... } where each frame is a table of length h:
---       value >= 0  => scanline dictionary ID (0-based)
---       -1          => same scanline as previous frame for that row
---       nil frame   => entire frame identical to previous frame
+--   data.F = { frame1, frame2, ... } where each frame is one of:
+--       false                  => identical to previous frame
+--       { d = {row,id,...} }   => delta frame; only listed rows are updated
+--       { id,id,id,... }       => full keyframe; one dictionary ID per row
 --   RLE bytes decode to pairs: (count, paletteIndex), paletteIndex 0 = transparent.
---
--- This player renders directly from RLE runs (rects), not full per-pixel rows.
 
 local Player = {}
 Player.__index = Player
